@@ -1,0 +1,413 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Alcazaba Residencias · Inmobiliaria de casas exclusivas en Mérida</title>
+  <meta name="description" content="Villas, áticos, casas patio y fincas exclusivas en Mérida y su entorno. Visitas privadas, recorrido virtual 3D, valoración gratuita de tu vivienda y calculadora de hipoteca. Concepto de web 3D de Daniel Durán (negocio ficticio).">
+  <!-- Demo con datos ficticios: no se indexa. Quita esta línea en la web de un cliente real. -->
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#23262B">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="canonical" href="https://danielduranmoya-spec.github.io/web-demo-inmobiliaria/">
+
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="es_ES">
+  <meta property="og:site_name" content="Alcazaba Residencias">
+  <meta property="og:title" content="Alcazaba Residencias · Casas que guardan la luz de Mérida">
+  <meta property="og:description" content="Recorre en 3D la Villa Proserpina del amanecer a la noche. Villas, áticos y fincas exclusivas en Mérida.">
+  <meta property="og:url" content="https://danielduranmoya-spec.github.io/web-demo-inmobiliaria/">
+  <meta property="og:image" content="https://danielduranmoya-spec.github.io/web-demo-inmobiliaria/img/og.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Outfit:wght@300;400;500;600&display=swap">
+  <link rel="stylesheet" href="style.css">
+  <link rel="preload" as="image" href="img/villa-amanecer.webp">
+  <script>document.documentElement.classList.add('js');</script>
+
+  <!-- three.js para la escena 3D (versión fijada) -->
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@0.186.1/build/three.module.js",
+      "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.186.1/examples/jsm/"
+    }
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "RealEstateAgent",
+        "@id": "https://danielduranmoya-spec.github.io/web-demo-inmobiliaria/#agencia",
+        "name": "Alcazaba Residencias",
+        "description": "Inmobiliaria de viviendas exclusivas en Mérida (concepto de web, negocio ficticio).",
+        "url": "https://danielduranmoya-spec.github.io/web-demo-inmobiliaria/",
+        "image": "https://danielduranmoya-spec.github.io/web-demo-inmobiliaria/img/og.jpg",
+        "telephone": "+34600000000",
+        "priceRange": "€€€€",
+        "areaServed": ["Mérida", "Proserpina", "La Corchera", "Vegas Bajas del Guadiana"],
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Calle Santa Eulalia, 41",
+          "postalCode": "06800",
+          "addressLocality": "Mérida",
+          "addressRegion": "Badajoz",
+          "addressCountry": "ES"
+        },
+        "geo": { "@type": "GeoCoordinates", "latitude": 38.9165, "longitude": -6.3437 },
+        "openingHoursSpecification": [
+          { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"], "opens": "09:30", "closes": "14:00" },
+          { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"], "opens": "17:00", "closes": "20:30" },
+          { "@type": "OpeningHoursSpecification", "dayOfWeek": "Saturday", "opens": "10:00", "closes": "13:30" }
+        ]
+      },
+      {
+        "@type": "SingleFamilyResidence",
+        "name": "Villa Proserpina",
+        "description": "Villa contemporánea de 420 m² con piscina desbordante junto al embalse de Proserpina, Mérida.",
+        "numberOfRooms": 5,
+        "floorSize": { "@type": "QuantitativeValue", "value": 420, "unitCode": "MTK" },
+        "address": { "@type": "PostalAddress", "addressLocality": "Mérida", "addressRegion": "Badajoz", "addressCountry": "ES" },
+        "offers": { "@type": "Offer", "price": 1250000, "priceCurrency": "EUR", "seller": { "@id": "https://danielduranmoya-spec.github.io/web-demo-inmobiliaria/#agencia" } }
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <svg class="sprite" aria-hidden="true" focusable="false">
+    <symbol id="i-logo" viewBox="0 0 40 40"><path d="M6 34V15l5-3v-5h4v3l5-3 5 3V7h4v5l5 3v19" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M16 34v-8a4 4 0 0 1 8 0v8M3 34h34" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h13M13 6.5l5.5 5.5-5.5 5.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 8h16M4 16h16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></symbol>
+    <symbol id="i-close" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></symbol>
+    <symbol id="i-bed" viewBox="0 0 24 24"><path d="M3 18V7M3 14h18v4M21 14v-2a3 3 0 0 0-3-3h-7v5M6.5 11.5h.01" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-bath" viewBox="0 0 24 24"><path d="M4 12h16v2a5 5 0 0 1-5 5H9a5 5 0 0 1-5-5zM6 12V6a2 2 0 0 1 4 0M7 19l-1 2M17 19l1 2" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-area" viewBox="0 0 24 24"><path d="M4 4h16v16H4zM4 9h5V4M15 20v-5h5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></symbol>
+    <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21s-6.5-5.6-6.5-11a6.5 6.5 0 0 1 13 0c0 5.4-6.5 11-6.5 11z" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="12" cy="10" r="2.4" fill="none" stroke="currentColor" stroke-width="1.5"/></symbol>
+    <symbol id="i-play" viewBox="0 0 24 24"><path d="M8 5.5v13l10.5-6.5z" fill="currentColor"/></symbol>
+    <symbol id="i-pause" viewBox="0 0 24 24"><path d="M7.5 5h3v14h-3zM13.5 5h3v14h-3z" fill="currentColor"/></symbol>
+    <symbol id="i-sound" viewBox="0 0 24 24"><path d="M4 9.5h3.5L12 6v12l-4.5-3.5H4z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M15.5 9a4 4 0 0 1 0 6M18 6.5a7.5 7.5 0 0 1 0 11" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></symbol>
+    <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M12 2.5v2.5M12 19v2.5M2.5 12H5M19 12h2.5M5.3 5.3l1.8 1.8M16.9 16.9l1.8 1.8M5.3 18.7l1.8-1.8M16.9 7.1l1.8-1.8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></symbol>
+    <symbol id="i-moon" viewBox="0 0 24 24"><path d="M19.5 14.5A8 8 0 0 1 9.5 4.5a8 8 0 1 0 10 10z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></symbol>
+    <symbol id="i-chat" viewBox="0 0 24 24"><path d="M4.5 19.5l1.2-3.6A7.5 7.5 0 1 1 8.4 18.6z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M9 10.2h6M9 13.4h4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></symbol>
+    <symbol id="i-drag" viewBox="0 0 24 24"><path d="M4 12h16M7 9l-3 3 3 3M17 9l3 3-3 3" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  </svg>
+
+  <a class="skip-link" href="#contenido">Saltar al contenido</a>
+
+  <div class="concept-bar"><span class="concept-bar__largo">Concepto de web 3D · Alcazaba Residencias es una inmobiliaria ficticia de Mérida y todos sus datos son inventados</span><span class="concept-bar__corto">Concepto de web 3D · negocio y datos ficticios</span></div>
+
+  <header class="site-header" data-header>
+    <div class="wrap site-header__inner">
+      <a class="logo" href="#inicio" aria-label="Alcazaba Residencias, inicio">
+        <svg class="logo__mark" aria-hidden="true"><use href="#i-logo"/></svg>
+        <span class="logo__text"><span class="logo__word">Alcazaba</span><span class="logo__sub">Residencias · Mérida</span></span>
+      </a>
+      <nav class="nav" id="menu" aria-label="Principal" data-menu>
+        <a href="#propiedades">Propiedades</a>
+        <a href="#villa">Villa 3D</a>
+        <a href="#recorrido">Recorrido</a>
+        <a href="#hipoteca">Hipoteca</a>
+        <a href="#vender">Vender</a>
+        <a class="btn btn--small btn--arcilla nav__cta" href="#contacto">Agendar visita</a>
+      </nav>
+      <button class="menu-btn" type="button" aria-expanded="false" aria-controls="menu" data-menu-btn>
+        <svg aria-hidden="true"><use href="#i-menu"/></svg><span class="sr-only">Abrir menú</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- escena 3D a pantalla completa, detrás de las secciones transparentes -->
+  <div class="escena" aria-hidden="true">
+    <canvas data-escena-canvas></canvas>
+    <img class="escena__fallback" src="img/villa-amanecer.webp" alt="" width="1600" height="900">
+  </div>
+
+  <!-- reloj: la hora del día en la villa -->
+  <div class="reloj" aria-hidden="true" data-reloj>
+    <svg class="reloj__icono"><use href="#i-sun" data-reloj-icono/></svg>
+    <span class="reloj__hora" data-reloj-hora>07:00</span>
+    <span class="reloj__barra"><span data-reloj-barra></span></span>
+  </div>
+
+  <main id="contenido">
+
+    <!-- ============ INICIO (amanecer) ============ -->
+    <section class="hero ventana" id="inicio" data-escena data-hora="6.9" data-vista="hero">
+      <div class="wrap hero__inner">
+        <p class="eyebrow eyebrow--claro">Mérida · Augusta Emerita · desde 2007</p>
+        <h1 class="hero__title" data-titulo>
+          <span class="linea"><span>Casas que guardan</span></span>
+          <span class="linea"><span>la luz de <em>Mérida</em></span></span>
+        </h1>
+        <p class="hero__lead">Villas, áticos, casas patio y fincas seleccionadas una a una. Baja despacio: el sol recorre la Villa Proserpina del amanecer a la noche.</p>
+        <div class="hero__actions">
+          <a class="btn btn--arcilla" href="#propiedades">Ver propiedades <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+          <a class="btn btn--cristal" href="#villa">Explorar la villa en 3D</a>
+        </div>
+      </div>
+      <div class="hero__scroll" aria-hidden="true"><span></span>Desliza</div>
+    </section>
+
+    <!-- ============ CIFRAS ============ -->
+    <section class="cifras" aria-label="Alcazaba en cifras">
+      <div class="wrap cifras__grid">
+        <div class="cifra"><span class="odometro" data-odometro="214">214</span><span class="cifra__txt">casas vendidas en Mérida y su comarca</span></div>
+        <div class="cifra"><span class="odometro" data-odometro="19">19</span><span class="cifra__txt">años abriendo puertas</span></div>
+        <div class="cifra"><span class="odometro" data-odometro="38">38</span><span class="cifra__txt">días de media hasta la venta</span></div>
+        <div class="cifra"><span class="odometro" data-odometro="4,9" data-decimales="1">4,9</span><span class="cifra__txt">sobre 5 en 312 reseñas</span></div>
+      </div>
+    </section>
+
+    <!-- ============ PROPIEDADES ============ -->
+    <section class="propiedades opaca" id="propiedades" aria-labelledby="prop-titulo">
+      <div class="wrap">
+        <div class="sec-head">
+          <p class="eyebrow">Selección de octubre</p>
+          <h2 id="prop-titulo" class="sec-title">Seis casas. Ni una más.</h2>
+          <p class="sec-lead">No publicamos cientos de anuncios. Visitamos cada vivienda, la fotografiamos con su mejor luz y solo enseñamos las que compraríamos nosotros.</p>
+        </div>
+        <div class="filtros" role="group" aria-label="Filtrar por tipo">
+          <button type="button" class="filtro activo" data-filtro="todas" aria-pressed="true">Todas</button>
+          <button type="button" class="filtro" data-filtro="villa" aria-pressed="false">Villas</button>
+          <button type="button" class="filtro" data-filtro="piso" aria-pressed="false">Pisos y áticos</button>
+          <button type="button" class="filtro" data-filtro="casa" aria-pressed="false">Casas</button>
+          <button type="button" class="filtro" data-filtro="finca" aria-pressed="false">Fincas</button>
+          <label class="orden">Ordenar
+            <select data-orden>
+              <option value="destacadas">Destacadas</option>
+              <option value="precio-asc">Precio: de menor a mayor</option>
+              <option value="precio-desc">Precio: de mayor a menor</option>
+              <option value="m2">Más metros</option>
+            </select>
+          </label>
+        </div>
+        <ul class="fichas" data-fichas aria-live="polite"></ul>
+      </div>
+    </section>
+
+    <!-- ============ MEDIODÍA (ventana a la escena) ============ -->
+    <section class="interludio ventana" data-escena data-hora="12.8" data-vista="aerea" aria-label="La villa a mediodía">
+      <div class="wrap">
+        <p class="interludio__hora">12:48</p>
+        <p class="interludio__txt">A mediodía la luz cae vertical sobre la cal. Los aleros de 1,2 metros dejan el salón en sombra y la casa fresca sin encender el aire.</p>
+      </div>
+    </section>
+
+    <!-- ============ VILLA INTERACTIVA (tarde) ============ -->
+    <section class="villa ventana" id="villa" data-escena data-hora="17.4" data-vista="villa" data-interactivo aria-labelledby="villa-titulo">
+      <div class="villa__arrastre" data-arrastre></div>
+      <div class="villa__puntos" data-puntos></div>
+      <div class="wrap villa__inner">
+        <div class="panel" data-panel>
+          <p class="eyebrow eyebrow--claro">Propiedad destacada · Ref. AR-0417</p>
+          <h2 id="villa-titulo" class="panel__title">Villa Proserpina</h2>
+          <p class="panel__precio"><span class="odometro odometro--precio" data-odometro="1250000" data-sufijo=" €">1.250.000 €</span></p>
+          <div class="panel__info" data-panel-info>
+            <p>420 m² en dos plantas, 5 dormitorios, parcela de 2.400 m² entre encinas, a 9 minutos del Teatro Romano. Arrastra para girar la casa y toca los puntos para entrar en cada estancia.</p>
+          </div>
+          <label class="hora-ctl">
+            <span class="hora-ctl__top"><span>Mírala a cualquier hora</span><output data-hora-out>17:24</output></span>
+            <input type="range" min="6.5" max="23" step="0.05" value="17.4" data-hora-ctl aria-label="Hora del día en la villa">
+          </label>
+          <div class="panel__acciones">
+            <button type="button" class="btn btn--small btn--cristal" data-ver-todo hidden>← Vista general</button>
+            <a class="btn btn--small btn--arcilla" href="#contacto" data-visita="Villa Proserpina">Pedir visita privada</a>
+          </div>
+        </div>
+        <p class="villa__ayuda"><svg aria-hidden="true"><use href="#i-drag"/></svg> Arrastra para girar</p>
+      </div>
+    </section>
+
+    <!-- ============ RECORRIDO: VÍDEO INTERACTIVO ============ -->
+    <section class="recorrido opaca opaca--oscura" id="recorrido" aria-labelledby="rec-titulo">
+      <div class="wrap">
+        <div class="sec-head sec-head--claro">
+          <p class="eyebrow eyebrow--claro">Vídeo interactivo</p>
+          <h2 id="rec-titulo" class="sec-title">Recorre la villa sin salir del sofá</h2>
+          <p class="sec-lead">Elige capítulo, toca los puntos que aparecen en el vídeo y decide por dónde seguir la visita.</p>
+        </div>
+        <div class="player" data-player>
+          <video data-video playsinline muted preload="metadata" poster="video/recorrido-poster.jpg">
+            <source src="video/recorrido.mp4" type="video/mp4">
+          </video>
+          <div class="player__hotspots" data-hotspots></div>
+          <div class="player__eleccion" data-eleccion hidden>
+            <p>¿Por dónde seguimos la visita?</p>
+            <div>
+              <button type="button" class="btn btn--small btn--arcilla" data-ir="piscina">Ir a la piscina</button>
+              <button type="button" class="btn btn--small btn--cristal" data-ir="terraza">Subir a la suite</button>
+            </div>
+          </div>
+          <div class="player__tarjeta" data-tarjeta hidden>
+            <p class="player__tarjeta-tit" data-tarjeta-tit></p>
+            <p data-tarjeta-txt></p>
+            <button type="button" class="btn btn--small btn--arcilla" data-seguir>Seguir el recorrido</button>
+          </div>
+          <button type="button" class="player__grande" data-play-grande aria-label="Reproducir el recorrido"><svg aria-hidden="true"><use href="#i-play"/></svg></button>
+          <div class="player__barra">
+            <button type="button" class="player__btn" data-play aria-label="Reproducir"><svg aria-hidden="true"><use href="#i-play"/></svg></button>
+            <div class="player__progreso" data-progreso role="slider" tabindex="0" aria-label="Posición del vídeo" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><span data-progreso-relleno></span></div>
+            <span class="player__tiempo" data-tiempo>0:00</span>
+          </div>
+        </div>
+        <ol class="capitulos" data-capitulos>
+          <li><button type="button" data-cap="0"><span>01</span>Llegada</button></li>
+          <li><button type="button" data-cap="6"><span>02</span>Piscina</button></li>
+          <li><button type="button" data-cap="12"><span>03</span>Suite y terraza</button></li>
+          <li><button type="button" data-cap="18"><span>04</span>Noche</button></li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ============ ATARDECER (ventana) ============ -->
+    <section class="interludio interludio--der ventana" data-escena data-hora="19.9" data-vista="acueducto" aria-label="La villa al atardecer">
+      <div class="wrap">
+        <p class="interludio__hora">19:54</p>
+        <p class="interludio__txt">Desde la terraza, el sol se pone sobre el acueducto de Los Milagros. Dos mil años de granito y ladrillo al fondo del jardín.</p>
+      </div>
+    </section>
+
+    <!-- ============ HIPOTECA ============ -->
+    <section class="hipoteca opaca" id="hipoteca" aria-labelledby="hip-titulo">
+      <div class="wrap hipoteca__grid">
+        <div>
+          <p class="eyebrow">Calculadora</p>
+          <h2 id="hip-titulo" class="sec-title">¿Cuánto pagarías al mes?</h2>
+          <p class="sec-lead">Una cuenta orientativa. Nuestro asesor hipotecario compara doce bancos sin coste para ti.</p>
+          <form class="calc" data-calc>
+            <label>Precio de la vivienda <output data-out="precio"></output>
+              <input type="range" name="precio" min="150000" max="2000000" step="5000" value="690000"></label>
+            <label>Ahorro aportado <output data-out="entrada"></output>
+              <input type="range" name="entrada" min="10" max="60" step="1" value="25"></label>
+            <label>Plazo <output data-out="anos"></output>
+              <input type="range" name="anos" min="10" max="35" step="1" value="30"></label>
+            <label>Interés fijo <output data-out="interes"></output>
+              <input type="range" name="interes" min="1.5" max="5" step="0.05" value="2.6"></label>
+          </form>
+        </div>
+        <div class="calc__res" aria-live="polite">
+          <p class="calc__label">Cuota mensual estimada</p>
+          <p class="calc__cuota"><span data-cuota>0</span> €</p>
+          <dl class="calc__dl">
+            <div><dt>Importe del préstamo</dt><dd data-res="prestamo"></dd></div>
+            <div><dt>Impuestos y gastos (aprox. 10 %)</dt><dd data-res="gastos"></dd></div>
+            <div><dt>Intereses totales</dt><dd data-res="intereses"></dd></div>
+          </dl>
+          <p class="calc__nota">Cálculo con sistema francés. ITP en Extremadura entre el 8 y el 11 % según el precio. No es una oferta vinculante.</p>
+          <a class="btn btn--arcilla" href="#contacto" data-visita="Estudio hipotecario">Quiero un estudio gratis</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ VENDER ============ -->
+    <section class="vender opaca opaca--arcilla" id="vender" aria-labelledby="ven-titulo">
+      <div class="wrap vender__grid">
+        <div>
+          <p class="eyebrow eyebrow--claro">Vende con nosotros</p>
+          <h2 id="ven-titulo" class="sec-title">Tu casa, con la luz que merece</h2>
+          <ul class="pasos">
+            <li><strong>Valoración en 48 h</strong> con datos de notarías y de las ventas reales de tu calle.</li>
+            <li><strong>Gemelo digital 3D</strong> de tu vivienda, como el de la Villa Proserpina.</li>
+            <li><strong>Exclusiva de 4 meses</strong> y sin coste si no se vende.</li>
+          </ul>
+        </div>
+        <form class="form" data-valoracion novalidate>
+          <p class="form__tit">Valoración gratuita</p>
+          <label>Tipo de vivienda
+            <select name="tipo" required>
+              <option value="">Elige una opción</option><option>Piso o ático</option><option>Casa o chalet</option><option>Villa</option><option>Finca rústica</option>
+            </select></label>
+          <label>Barrio o zona <input name="zona" required placeholder="p. ej. Nueva Ciudad, Centro, Proserpina"></label>
+          <label>Metros construidos <input name="m2" type="number" inputmode="numeric" min="20" max="5000" required placeholder="120"></label>
+          <label>Teléfono <input name="tel" type="tel" inputmode="tel" autocomplete="tel" required placeholder="600 000 000"></label>
+          <label class="check"><input type="checkbox" name="rgpd" required> He leído la <a href="privacidad.html">política de privacidad</a>.</label>
+          <button class="btn btn--granito" type="submit"><svg aria-hidden="true"><use href="#i-chat"/></svg> Enviar por WhatsApp</button>
+          <p class="form__msg" data-msg role="status"></p>
+        </form>
+      </div>
+    </section>
+
+    <!-- ============ OPINIONES ============ -->
+    <section class="opiniones opaca" aria-labelledby="op-titulo">
+      <div class="wrap">
+        <h2 id="op-titulo" class="sec-title sec-title--centro">Lo que cuentan al recoger las llaves</h2>
+        <div class="opiniones__grid">
+          <figure class="opinion"><blockquote>«Vendimos el piso de la Rambla en cinco semanas y sin una sola visita de curiosos.»</blockquote><figcaption>Lucía y Andrés · Nueva Ciudad</figcaption></figure>
+          <figure class="opinion"><blockquote>«Vivimos en Madrid. Hicimos la primera visita en 3D y solo viajamos para firmar.»</blockquote><figcaption>Familia Rangel · Villa en La Corchera</figcaption></figure>
+          <figure class="opinion"><blockquote>«Nos encontraron una casa patio en el centro que ni siquiera estaba a la venta.»</blockquote><figcaption>Elena M. · Calle Santa Eulalia</figcaption></figure>
+        </div>
+        <p class="opiniones__nota">Opiniones ficticias de una web de demostración.</p>
+      </div>
+    </section>
+
+    <!-- ============ CONTACTO (noche) ============ -->
+    <section class="contacto ventana" id="contacto" data-escena data-hora="22.6" data-vista="noche" aria-labelledby="con-titulo">
+      <div class="wrap contacto__inner">
+        <div class="tarjeta-cristal">
+          <p class="eyebrow eyebrow--claro">22:36 · La casa sigue encendida</p>
+          <h2 id="con-titulo" class="sec-title">Agenda una visita privada</h2>
+          <form class="form form--claro" data-visita-form novalidate>
+            <label>Nombre <input name="nombre" autocomplete="name" required></label>
+            <label>Propiedad
+              <select name="propiedad" data-select-propiedad></select></label>
+            <label>¿Cuándo te viene bien?
+              <select name="cuando"><option>Entre semana por la mañana</option><option>Entre semana por la tarde</option><option>Sábado por la mañana</option><option>Visita virtual por videollamada</option></select></label>
+            <label class="check"><input type="checkbox" name="rgpd" required> Acepto la <a href="privacidad.html">política de privacidad</a>.</label>
+            <button class="btn btn--arcilla" type="submit"><svg aria-hidden="true"><use href="#i-chat"/></svg> Pedir visita por WhatsApp</button>
+            <p class="form__msg" data-msg role="status"></p>
+          </form>
+          <address class="datos">
+            <p><svg aria-hidden="true"><use href="#i-pin"/></svg> Calle Santa Eulalia, 41 · 06800 Mérida (dirección ficticia)</p>
+            <p><a href="tel:+34600000000">600 000 000</a> · <a href="mailto:hola@alcazaba-residencias.example">hola@alcazaba-residencias.example</a></p>
+            <p>L–V 9:30–14:00 y 17:00–20:30 · S 10:00–13:30</p>
+          </address>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap footer__inner">
+      <p class="logo logo--pie"><svg class="logo__mark" aria-hidden="true"><use href="#i-logo"/></svg><span class="logo__word">Alcazaba</span></p>
+      <nav aria-label="Legal"><a href="aviso-legal.html">Aviso legal</a><a href="privacidad.html">Privacidad</a><a href="cookies.html">Cookies</a><button type="button" class="link" data-cookies-abrir>Configurar cookies</button></nav>
+      <p class="footer__credit">Concepto de web interactiva 3D por <a href="https://danielduranmoya-spec.github.io/">Daniel Durán</a> · Negocio y datos ficticios</p>
+    </div>
+  </footer>
+
+  <!-- ficha ampliada -->
+  <dialog class="ficha-dialog" data-dialog aria-labelledby="dlg-titulo">
+    <button type="button" class="ficha-dialog__cerrar" data-cerrar aria-label="Cerrar"><svg aria-hidden="true"><use href="#i-close"/></svg></button>
+    <div class="ficha-dialog__img"><img data-dlg-img alt=""></div>
+    <div class="ficha-dialog__body">
+      <p class="eyebrow" data-dlg-zona></p>
+      <h3 id="dlg-titulo" data-dlg-titulo></h3>
+      <p class="ficha-dialog__precio" data-dlg-precio></p>
+      <ul class="specs" data-dlg-specs></ul>
+      <p data-dlg-texto></p>
+      <ul class="extras" data-dlg-extras></ul>
+      <a class="btn btn--arcilla" href="#contacto" data-dlg-visita>Pedir visita</a>
+    </div>
+  </dialog>
+
+  <!-- aviso de cookies -->
+  <div class="cookies" data-cookies hidden role="dialog" aria-label="Aviso de cookies">
+    <p>Esta web solo guarda tus preferencias en tu navegador y no usa cookies de análisis ni publicidad. <a href="cookies.html">Más información</a>.</p>
+    <div><button type="button" class="btn btn--small btn--arcilla" data-cookies-ok>Entendido</button></div>
+  </div>
+
+  <script src="script.js" defer></script>
+  <script type="module">
+    import { iniciar } from './escena.js';
+    try { window.ESCENA_API = iniciar(); } catch (e) { console.error(e); document.documentElement.classList.add('sin-3d'); }
+  </script>
+</body>
+</html>

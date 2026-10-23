@@ -1,0 +1,5 @@
+# Demo con datos ficticios: no indexar. En la web real, cambia a "Allow: /".
+User-agent: *
+Disallow: /
+
+Sitemap: https://danielduranmoya-spec.github.io/web-demo-inmobiliaria/sitemap.xml
